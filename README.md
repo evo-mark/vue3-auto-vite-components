@@ -12,7 +12,7 @@
   <a href="https://github.com/craigrileyuk/vue3-auto-vite-components/blob/main/LICENSE"><img src="https://img.shields.io/npm/l/vue3-auto-vite-components.svg" alt="License"></a>
 </p>
 
-# Vue Auto Vite Components
+# Vue3 Auto Vite Components
 
 Automatically register your components for your Vue project. Supports syncronous, asynchronous and web components
 
