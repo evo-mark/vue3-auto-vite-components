@@ -1,0 +1,32 @@
+{
+    "compilerOptions": {
+      "target": "ES2022",
+      "lib": [
+        "ES2022",
+        "DOM"
+      ],
+      "skipLibCheck": true,
+      "esModuleInterop": true,
+      "allowSyntheticDefaultImports": true,
+      "forceConsistentCasingInFileNames": true,
+      "moduleResolution": "Node",
+      "resolveJsonModule": true,
+      "isolatedModules": true,
+      "strict": false,
+      "module": "ES2022",
+      "strictBindCallApply": true,
+      "noFallthroughCasesInSwitch": false,
+      "baseUrl": "./",
+      "outDir": "./dist",
+      "declaration": true,
+      "types": ["vite/client"]
+    },
+    "include": [
+      "src",
+    ],
+    "exclude": [
+      "node_modules",
+      "dist",
+      "demo"
+    ]
+  }

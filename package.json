@@ -1,0 +1,38 @@
+{
+	"name": "vue3-auto-vite-components",
+	"version": "1.0.0",
+	"description": "Automatically register your components for your Vue project. Supports syncronous, asynchronous and web components",
+	"main": "dist/index.js",
+	"module": "dist/index.js",
+	"types": "dist/index.d.ts",
+	"files": [
+		"dist"
+	],
+	"type": "module",
+	"scripts": {
+		"dev": "vite",
+		"build": "tsc",
+		"watch": "tsc --watch",
+		"prepublishOnly": "npm run build"
+	},
+	"keywords": [
+		"vue",
+		"vue3",
+		"vite",
+		"components",
+		"async"
+	],
+	"author": "southcoastweb",
+	"license": "MIT",
+	"homepage": "https://southcoastweb.co.uk",
+	"peerDependencies": {
+		"vite": "^4.2.1",
+		"vue": ">=3.0.0"
+	},
+	"devDependencies": {
+		"@vitejs/plugin-vue": "^4.1.0",
+		"typescript": "^5.0.4",
+		"vue": "^3.2.47",
+		"lodash-es": "^4.17.21"
+	}
+}
