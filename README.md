@@ -7,9 +7,9 @@
 </a>
 
 <p align="center">
-  <img src="https://img.shields.io/npm/dm/vue-auto-vite-components.svg" alt="Downloads"></a>
-  <a href="https://www.npmjs.com/package/vue-auto-vite-components"><img src="https://img.shields.io/npm/v/vue-auto-vite-components.svg" alt="Version"></a>
-  <a href="https://github.com/craigrileyuk/vue-auto-vite-components/blob/main/LICENSE"><img src="https://img.shields.io/npm/l/vue-auto-vite-components.svg" alt="License"></a>
+  <img src="https://img.shields.io/npm/dm/vue3-auto-vite-components.svg" alt="Downloads"></a>
+  <a href="https://www.npmjs.com/package/vue3-auto-vite-components"><img src="https://img.shields.io/npm/v/vue3-auto-vite-components.svg" alt="Version"></a>
+  <a href="https://github.com/craigrileyuk/vue3-auto-vite-components/blob/main/LICENSE"><img src="https://img.shields.io/npm/l/vue3-auto-vite-components.svg" alt="License"></a>
 </p>
 
 # Vue Auto Vite Components
@@ -18,4 +18,4 @@ Automatically register your components for your Vue project. Supports syncronous
 
 ---
 
-For installation and documentation instructions, go to [southcoastweb](https://southcoastweb.co.uk/open-source-software/vue-auto-vite-components/)
+For installation and documentation instructions, go to [southcoastweb](https://southcoastweb.co.uk/open-source-software/vue3-auto-vite-components/)
