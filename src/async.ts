@@ -13,7 +13,7 @@ export const registerAsync: RegisterAsyncFunction = (Vue, { glob, loadingGlob, n
 		const isValid = validateComponent(name);
 		if (!isValid) continue;
 
-		const loadingComponent = resolveLoadingComponent(component, loadingGlob);
+		const loadingComponent = loadingGlob ? resolveLoadingComponent(component, loadingGlob) : null;
 
 		if (loadingComponent) {
 			Vue.component(
