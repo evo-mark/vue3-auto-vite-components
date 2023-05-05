@@ -1,4 +1,3 @@
-import { ImportGlobFunction, ImportGlobEagerFunction } from "vite";
 import type { App, AsyncComponentLoader, Component } from "vue";
 
 export interface AutoComponentsConfig {
@@ -10,6 +9,8 @@ export interface AutoComponentsConfig {
 }
 
 export type InstallFunction = (vue: App, options: AutoComponentsConfig) => void;
+
+export type RegisterWeb = (glob: Record<string, Component>, namespace: string) => void;
 
 export type RegisterFunction = (
 	vue: App,
