@@ -41,7 +41,7 @@ jobs:
       - name: Bump package.json version
         run: |
           VERSION="${{ needs.tag.outputs.new_tag }}"
-          jq ".version=\"${VERSION:1}\"" ./package.json > ./package.tmp.json --tab
+          jq ".version=\"${VERSION}\"" ./package.json > ./package.tmp.json --tab
           mv ./package.tmp.json ./package.json
 
       - name: Create npmrc file
@@ -64,8 +64,8 @@ jobs:
         id: changelog_file
         run: |
           if [[ ! -z $(cat changelog/next.md) ]] ; then
-            echo "changelog=${{ needs.tag.outputs.new_tag }}" >> $GITHUB_OUTPUT
-            mv changelog/next.md changelog/${{ needs.tag.outputs.new_tag }}.md
+            echo "changelog=v${{ needs.tag.outputs.new_tag }}" >> $GITHUB_OUTPUT
+            mv changelog/next.md changelog/v${{ needs.tag.outputs.new_tag }}.md
             touch changelog/next.md
           else
             echo "changelog=next" >> $GITHUB_OUTPUT
@@ -94,7 +94,7 @@ jobs:
         with:
           tag_name: ${{ needs.tag.outputs.new_tag }}
           name: Release ${{ needs.tag.outputs.new_tag }}
-          body_path: changelog/${{ steps.changelog_file.outputs.changelog }}.md
+          body_path: changelog/v${{ steps.changelog_file.outputs.changelog }}.md
           draft: false
           prerelease: false
 
