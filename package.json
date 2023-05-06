@@ -13,8 +13,7 @@
 		"dev": "vite",
 		"build": "tsc",
 		"watch": "tsc --watch",
-		"test": "vitest",
-		"prepublishOnly": "npm run build"
+		"test": "vitest"
 	},
 	"keywords": [
 		"vue",

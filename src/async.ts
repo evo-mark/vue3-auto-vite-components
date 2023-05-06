@@ -7,9 +7,9 @@ const resolveLoadingComponent = (component: string, loadingComponents: Record<st
 	return loadingComponents[path];
 };
 
-export const registerAsync: RegisterAsyncFunction = (Vue, { glob, loadingGlob, namespace }) => {
+export const registerAsync: RegisterAsyncFunction = (Vue, { glob, loadingGlob, namespace, resolveIndex = false }) => {
 	for (const component in glob) {
-		const name = resolveName(component);
+		const name = resolveName(component, false, resolveIndex);
 		const isValid = validateComponent(name);
 		if (!isValid) continue;
 

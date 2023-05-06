@@ -1,9 +1,9 @@
 import { resolveName, validateComponent } from "./index";
 import type { RegisterFunction } from "./types";
 
-export const registerSync: RegisterFunction = (Vue, { glob, namespace = "" }) => {
+export const registerSync: RegisterFunction = (Vue, { glob, namespace = "", resolveIndex = false }) => {
 	for (const component in glob) {
-		const name = resolveName(component);
+		const name = resolveName(component, false, resolveIndex);
 		const isValid = validateComponent(name);
 		if (!isValid || !glob[component] || typeof glob[component] !== "object") continue;
 

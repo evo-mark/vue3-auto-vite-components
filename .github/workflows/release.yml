@@ -1,0 +1,110 @@
+name: release
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  tag:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: "0"
+
+      - name: Bump version and push tag
+        id: tag
+        uses: anothrNick/github-tag-action@1.61.0
+        env:
+          WITH_V: false
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          DEFAULT_BUMP: none
+          RELEASE_BRANCHES: main
+
+    outputs:
+      bump: ${{ steps.tag.outputs.part }}
+      new_tag: ${{ steps.tag.outputs.new_tag }}
+
+  build_release:
+    runs-on: ubuntu-latest
+    needs: tag
+    if: needs.tag.outputs.bump
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Install JQ
+        run: sudo apt-get install -y jq
+
+      - name: Bump package.json version
+        run: |
+          VERSION="${{ needs.tag.outputs.new_tag }}"
+          jq ".version=\"${VERSION:1}\"" ./package.json > ./package.tmp.json --tab
+          mv ./package.tmp.json ./package.json
+
+      - name: Create npmrc file
+        run: echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > .npmrc
+
+      - name: Install Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: "18"
+          cache: "npm"
+      - run: npm ci
+
+      - name: Build artefacts
+        run: npm run build
+
+      - name: Run tests
+        run: npm run test
+
+      - name: Process changelog
+        id: changelog_file
+        run: |
+          if [[ ! -z $(cat changelog/next.md) ]] ; then
+            echo "changelog=${{ needs.tag.outputs.new_tag }}" >> $GITHUB_OUTPUT
+            mv changelog/next.md changelog/${{ needs.tag.outputs.new_tag }}.md
+            touch changelog/next.md
+          else
+            echo "changelog=next" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Commit changes to package.json version and changelog folder
+        continue-on-error: true
+        run: |
+          git config --global user.email  "github@southcoastweb.co.uk"
+          git config --global user.name  "SCW Action"
+          git add .
+          git commit -m "Github Action updated version"
+          git push
+
+      - name: Create NPM package
+        run: npm pack
+
+      - name: Release to NPM
+        run: npm publish
+
+      - name: Create Github release
+        id: create_release
+        uses: softprops/action-gh-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ needs.tag.outputs.new_tag }}
+          name: Release ${{ needs.tag.outputs.new_tag }}
+          body_path: changelog/${{ steps.changelog_file.outputs.changelog }}.md
+          draft: false
+          prerelease: false
+
+      - name: Add NPM package to release
+        id: upload_release_asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./vue3-auto-vite-components-${{ needs.tag.outputs.new_tag }}.tgz
+          asset_name: vue3-auto-vite-components-${{ needs.tag.outputs.new_tag }}.tgz
+          asset_content_type: application/gzip
