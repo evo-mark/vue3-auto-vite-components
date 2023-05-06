@@ -77,3 +77,25 @@ describe("component file types", () => {
 		expect(resolved).toBe("TsExtendedTesting");
 	});
 });
+
+describe("name options", () => {
+	it("applies resolveIndex correctly when true", () => {
+		const resolved = resolveName("./components/sync/crud table/index.vue", false, true);
+		expect(resolved).toBe("CrudTable");
+	});
+
+	it("applies resolveIndex correctly when using index as part of name", () => {
+		const resolved = resolveName("./components/sync/crud table/CardIndex.vue", false, true);
+		expect(resolved).toBe("CrudTableCardIndex");
+	});
+
+	it("applies resolveIndex correctly false/not set", () => {
+		const resolved = resolveName("./components/sync/crud table/index.vue");
+		expect(resolved).toBe("CrudTableIndex");
+	});
+
+	it("applies resolveIndex correctly to a webcomponent", () => {
+		const resolved = resolveName("./components/sync/crud table/index.vue", true, true);
+		expect(resolved).toBe("crud-table");
+	});
+});

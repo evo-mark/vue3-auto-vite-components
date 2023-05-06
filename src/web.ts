@@ -2,10 +2,10 @@ import { resolveName, validateComponent } from "./index";
 import { defineCustomElement } from "vue";
 import { RegisterWeb } from "./types";
 
-export const registerWeb: RegisterWeb = (glob, namespace = "") => {
+export const registerWeb: RegisterWeb = (glob, namespace = "", resolveIndex = false) => {
 	namespace = namespace.toLowerCase();
 	for (const component in glob) {
-		const name = resolveName(component.replace(".ce.vue", ".vue"), true);
+		const name = resolveName(component.replace(".ce.vue", ".vue"), true, resolveIndex);
 		const isValid = validateComponent(name);
 		if (!isValid) continue;
 
