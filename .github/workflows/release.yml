@@ -94,7 +94,7 @@ jobs:
         with:
           tag_name: ${{ needs.tag.outputs.new_tag }}
           name: Release ${{ needs.tag.outputs.new_tag }}
-          body_path: changelog/v${{ steps.changelog_file.outputs.changelog }}.md
+          body_path: changelog/${{ steps.changelog_file.outputs.changelog }}.md
           draft: false
           prerelease: false
 
