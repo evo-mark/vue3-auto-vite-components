@@ -26,7 +26,7 @@
 	"license": "MIT",
 	"homepage": "https://southcoastweb.co.uk",
 	"peerDependencies": {
-		"vite": "^4.2.1",
+		"vite": ">=4.2.1",
 		"vue": ">=3.0.0"
 	},
 	"devDependencies": {
