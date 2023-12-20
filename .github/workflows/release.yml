@@ -33,6 +33,9 @@ jobs:
     needs: tag
     if: needs.tag.outputs.bump
     steps:
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 8
       - uses: actions/checkout@v3
         with:
           fetch-depth: 0
