@@ -22,14 +22,14 @@
 		"components",
 		"async"
 	],
-	"author": "southcoastweb",
+	"author": "evomark",
 	"license": "MIT",
-	"homepage": "https://southcoastweb.co.uk",
+	"homepage": "https://evomark.co.uk",
 	"peerDependencies": {
-		"vite": ">=4.2.1",
 		"vue": ">=3.0.0"
 	},
 	"devDependencies": {
+		"vite": ">=4.2.1",
 		"@vitejs/plugin-vue": "^4.1.0",
 		"lodash-es": "^4.17.21",
 		"typescript": "^5.0.4",
