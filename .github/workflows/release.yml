@@ -15,7 +15,7 @@ jobs:
 
       - name: Bump version and push tag
         id: tag
-        uses: anothrNick/github-tag-action@1.61.0
+        uses: anothrNick/github-tag-action@1.67.0
         env:
           WITH_V: false
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -50,9 +50,9 @@ jobs:
       - name: Install Node
         uses: actions/setup-node@v3
         with:
-          node-version: "18"
+          node-version: "20"
           cache: "npm"
-      - run: npm ci
+      - run: pnpm i --frozen-lockfile
 
       - name: Build artefacts
         run: npm run build
@@ -74,8 +74,8 @@ jobs:
       - name: Commit changes to package.json version and changelog folder
         continue-on-error: true
         run: |
-          git config --global user.email  "github@southcoastweb.co.uk"
-          git config --global user.name  "SCW Action"
+          git config --global user.email  "github@evomark.co.uk"
+          git config --global user.name  "Evo Action"
           git add .
           git commit -m "Github Action updated version"
           git push
