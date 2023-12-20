@@ -1,6 +1,6 @@
 {
 	"name": "vue3-auto-vite-components",
-	"version": "1.2.0",
+	"version": "1.2.3",
 	"description": "Automatically register your components for your Vue project. Supports syncronous, asynchronous and web components",
 	"main": "dist/index.js",
 	"module": "dist/index.js",
