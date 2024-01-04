@@ -1,4 +1,4 @@
-import { resolveName, validateComponent } from "./index";
+import { resolveName, validateComponent } from "./index.js";
 import { defineCustomElement } from "vue";
 import { RegisterWeb } from "./types";
 

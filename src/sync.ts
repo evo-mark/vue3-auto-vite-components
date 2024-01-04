@@ -1,4 +1,4 @@
-import { resolveName, validateComponent } from "./index";
+import { resolveName, validateComponent } from "./index.js";
 import type { RegisterFunction } from "./types";
 
 export const registerSync: RegisterFunction = (Vue, { glob, namespace = "", resolveIndex = false }) => {

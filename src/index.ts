@@ -1,6 +1,6 @@
-import { registerSync } from "./sync";
-import { registerAsync } from "./async";
-import { registerWeb } from "./web";
+import { registerSync } from "./sync.js";
+import { registerAsync } from "./async.js";
+import { registerWeb } from "./web.js";
 import type { VueAutoViteComponents, AutoComponentsConfig } from "./types";
 import { kebabCase, camelCase, upperFirst } from "lodash-es";
 

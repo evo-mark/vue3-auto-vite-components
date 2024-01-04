@@ -1,5 +1,5 @@
-import { resolveName, validateComponent } from "./index";
-import { RegisterAsyncFunction } from "./types";
+import { resolveName, validateComponent } from "./index.js";
+import { RegisterAsyncFunction } from "./types.js";
 import { defineAsyncComponent } from "vue";
 
 const resolveLoadingComponent = (component: string, loadingComponents: Record<string, unknown>) => {
