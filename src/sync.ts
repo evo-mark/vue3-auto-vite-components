@@ -7,7 +7,6 @@ export const registerSync: RegisterFunction = (Vue, { glob, namespace = "", reso
 		const isValid = validateComponent(name);
 		if (!isValid || !glob[component] || typeof glob[component] !== "object") continue;
 
-		/* @ts-expect-error */
 		Vue.component(`${namespace}${name}`, glob[component].default);
 	}
 };

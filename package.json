@@ -1,6 +1,6 @@
 {
 	"name": "vue3-auto-vite-components",
-	"version": "1.3.0",
+	"version": "1.3.1",
 	"description": "Automatically register your components for your Vue project. Supports syncronous, asynchronous and web components",
 	"main": "dist/index.js",
 	"module": "dist/index.js",
@@ -13,7 +13,8 @@
 		"dev": "vite",
 		"build": "tsc",
 		"watch": "tsc --watch",
-		"test": "vitest"
+		"test": "vitest --run",
+		"prepublishOnly": "npm run test && npm run build"
 	},
 	"keywords": [
 		"vue",
@@ -29,11 +30,11 @@
 		"vue": ">=3.0.0"
 	},
 	"devDependencies": {
-		"@vitejs/plugin-vue": "^5.0.2",
+		"@vitejs/plugin-vue": "^5.2.1",
 		"lodash-es": "^4.17.21",
-		"typescript": "^5.3.3",
-		"vite": "^5.0.10",
-		"vitest": "^1.1.1",
-		"vue": "^3.4.5"
+		"typescript": "^5.7.2",
+		"vite": "^6.0.3",
+		"vitest": "^2.1.8",
+		"vue": "^3.5.13"
 	}
 }
