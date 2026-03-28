@@ -5,6 +5,10 @@ on:
         branches:
             - main
 
+permissions:
+    id-token: write # Required for OIDC
+    contents: read
+
 jobs:
     tag:
         runs-on: ubuntu-latest
@@ -50,9 +54,6 @@ jobs:
                   VERSION="${{ needs.tag.outputs.new_tag }}"
                   jq ".version=\"${VERSION}\"" ./package.json > ./package.tmp.json --tab
                   mv ./package.tmp.json ./package.json
-
-            - name: Create npmrc file
-              run: echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > .npmrc
 
             - name: Install Node
               uses: actions/setup-node@v3
