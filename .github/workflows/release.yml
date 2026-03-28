@@ -15,13 +15,13 @@ jobs:
         permissions:
             contents: write
         steps:
-            - uses: actions/checkout@v3
+            - uses: actions/checkout@v6
               with:
                   fetch-depth: "0"
 
             - name: Bump version and push tag
               id: tag
-              uses: anothrNick/github-tag-action@1.67.0
+              uses: anothrNick/github-tag-action@1.75.0
               env:
                   WITH_V: false
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -39,10 +39,10 @@ jobs:
         permissions:
             contents: write
         steps:
-            - uses: pnpm/action-setup@v2
+            - uses: pnpm/action-setup@v5
               with:
                   version: 8
-            - uses: actions/checkout@v3
+            - uses: actions/checkout@v6
               with:
                   fetch-depth: 0
 
@@ -56,9 +56,9 @@ jobs:
                   mv ./package.tmp.json ./package.json
 
             - name: Install Node
-              uses: actions/setup-node@v3
+              uses: actions/setup-node@v6
               with:
-                  node-version: "20"
+                  node-version: "24"
                   cache: "pnpm"
             - run: pnpm i
 
@@ -96,7 +96,7 @@ jobs:
 
             - name: Create Github release
               id: create_release
-              uses: softprops/action-gh-release@v1
+              uses: softprops/action-gh-release@v2
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
               with:
@@ -105,14 +105,4 @@ jobs:
                   body_path: changelog/${{ steps.changelog_file.outputs.changelog }}.md
                   draft: false
                   prerelease: false
-
-            - name: Add NPM package to release
-              id: upload_release_asset
-              uses: actions/upload-release-asset@v1
-              env:
-                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-              with:
-                  upload_url: ${{ steps.create_release.outputs.upload_url }}
-                  asset_path: ./vue3-auto-vite-components-${{ needs.tag.outputs.new_tag }}.tgz
-                  asset_name: vue3-auto-vite-components-${{ needs.tag.outputs.new_tag }}.tgz
-                  asset_content_type: application/gzip
+                  files: vue3-auto-vite-components-${{ needs.tag.outputs.new_tag }}.tgz
