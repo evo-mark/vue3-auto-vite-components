@@ -1,1 +1,0 @@
-- **Breaking Change**: Move to using `es-toolkit` as a peer dependency

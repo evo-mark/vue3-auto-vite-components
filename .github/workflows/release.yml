@@ -93,7 +93,7 @@ jobs:
               run: npm pack
 
             - name: Release to NPM
-              run: npm publish --access public
+              run: npm publish
 
             - name: Create Github release
               id: create_release
