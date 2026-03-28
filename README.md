@@ -16,7 +16,7 @@
 
 # Vue3 Auto Vite Components
 
-Automatically register your components for your Vue project. Supports syncronous, asynchronous and web components
+Automatically register your components for your Vue project. Supports synchronous, asynchronous and web components
 
 ---
 

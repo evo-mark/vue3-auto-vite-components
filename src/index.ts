@@ -2,7 +2,7 @@ import { registerSync } from "./sync.js";
 import { registerAsync } from "./async.js";
 import { registerWeb } from "./web.js";
 import type { VueAutoViteComponents, AutoComponentsConfig } from "./types";
-import { kebabCase, camelCase, upperFirst } from "lodash-es";
+import { kebabCase, camelCase, upperFirst } from "es-toolkit";
 
 const pascalCase = (str: string): string => [camelCase, upperFirst].reduce((acc, fn) => fn(acc), str);
 
@@ -15,7 +15,7 @@ export const validateComponent = (name: string): boolean => {
 export const resolveName = (
 	component: string,
 	useKebab: boolean = false,
-	resolveIndex: boolean = false
+	resolveIndex: boolean = false,
 ): string | null => {
 	const nameMatches = component.match(/(?:^.*?(?:a?sync|web)\/)(.*?)(?:\.(vue|js|ts|jsx|tsx)$)/i);
 	if (!nameMatches || !nameMatches[1]) return null;
