@@ -3,7 +3,7 @@
 	"version": "2.0.0",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/evo-mark/vue3-auto-vite-components"
+		"url": "git+https://github.com/evo-mark/vue3-auto-vite-components.git"
 	},
 	"description": "Automatically register your components for your Vue project. Supports synchronous, asynchronous and web components",
 	"main": "dist/index.js",
